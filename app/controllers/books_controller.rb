@@ -1,8 +1,9 @@
 class BooksController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
-  def new　#フォームを表示させるためのアクション
-    @book=Book.new
-  end
+  # def new　#フォームを表示させるためのアクション
+  #   @book=Book.new
+  # end
+
   def create #新規作成した本の内容を保存
     @book = Book.new(book_params) #フォームからデータを受け取り
     @book.user_id = current_user.id #フォームに含まれないidを補完
@@ -23,6 +24,7 @@ class BooksController < ApplicationController
   def show #本の詳細を取得して表示
     @book = Book.find(params[:id])
     @user = @book.user
+    @book_comment = BookComment.new
   end
 
   def edit

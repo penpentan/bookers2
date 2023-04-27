@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image #画像使用
   has_many :books, dependent: :destroy #booksの内容も同時に削除
+  has_many :favorites, dependent: :destroy
+  has_many :book_comments,dependent: :destroy
 
   validates :name, uniqueness: true,length: { in: 2..20 }
   validates :introduction, length: { maximum:50 }
